@@ -4,8 +4,14 @@ body {
   margin-top: 5rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
+  margin-bottom: 40px;
+}
+
+h2, h3, h4, h5, h6 {
   color: #444444;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .bg-steel {
@@ -29,6 +35,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 20px;
   border: 1px solid #dddddd;
   border-radius: 3px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
