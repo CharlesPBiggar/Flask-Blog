@@ -1,20 +1,33 @@
 # Charles Biggar - Flask Blog V1
 # Dependencies
-from flask import Flask
-
-
+from flask import Flask, render_template
 app = Flask(__name__)
+
+posts = [
+    {
+        'author': 'Charles Biggar',
+        'title': 'Blog Post 1',
+        'content': 'Charles is working on his webpage',
+        'date_posted': 'March 3, 2020'
+    },
+    {
+        'author': 'Amanda Kramer',
+        'title': 'Blog Post 2',
+        'content': 'Amanda is currently working on SAS Homework!',
+        'date_posted': 'March 3, 2020'
+    }
+]
 
 
 #First Route
 @app.route("/")
 @app.route("/home")
 def hello():
-    return "<h1>Hello World!</h1>"
+    return render_template("home.html", posts=posts)
 
 @app.route('/about')
 def about():
-    return "<h2>About Page</h2>"
+    return render_template("about.html", title = "About")
 
 
 
