@@ -50,6 +50,8 @@ a.article-title:hover {
 
 .article-content {
   white-space: pre-line;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .article-img {
