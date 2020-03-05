@@ -2,13 +2,14 @@
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms.validators import DataRequired, Length, Email, EqualTo, Regexp
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', 
                             validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email', 
-                        validators=[DataRequired(), Email()])
+                                                    # Created Regular Expression to catch entrys that are not emails
+                        validators=[DataRequired(), Regexp(regex='^[A-Za-z0-9\-\.]+@[A-Za-z\-]+.[a-z]{2,3}$', message='Not a valid Email.')])
     password = PasswordField('Password',
                             validators=[DataRequired(), Length(min=6, max=30)])
     confirm_password = PasswordField('Confirm Password',
