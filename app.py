@@ -1,7 +1,11 @@
 # Charles Biggar - Flask Blog V1
 # Dependencies
 from flask import Flask, render_template, url_for
+from forms import RegistrationForm, LoginForm
+
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = 'e94f492957e9be802f10ca325ee12cb3'
 
 posts = [
     {
@@ -20,8 +24,8 @@ posts = [
 
 
 #First Route
-@app.route("/")
-@app.route("/home")
+@app.route('/')
+@app.route('/home')
 def hello():
     return render_template("home.html", title = "Home Page", posts=posts)
 
@@ -29,6 +33,15 @@ def hello():
 def about():
     return render_template("about.html", title = "About")
 
+@app.route('/register')
+def register():
+    form = RegistrationForm()
+    return render_template("register.html", title = "Registration Page", form=form)
+
+@app.route('/login')
+def register():
+    form = LoginForm()
+    return render_template("login.html", title = "Login Page", form=form)
 
 
 #Debug Mode = Active
