@@ -33,13 +33,13 @@ def hello():
 def about():
     return render_template("about.html", title = "About")
 
-@app.route('/register')
+@app.route('/register', methods=['POST','GET'])
 def register():
     form = RegistrationForm()
-    return render_template("register.html", title = "Registration Page", form=form)
+    return render_template("registration.html", title = "Registration Page", form=form)
 
 @app.route('/login')
-def register():
+def login():
     form = LoginForm()
     return render_template("login.html", title = "Login Page", form=form)
 
