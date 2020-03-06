@@ -1,11 +1,19 @@
 # Charles Biggar - Flask Blog V1
 # Dependencies
+from datetime import datetime
 from flask import Flask, render_template, url_for, flash, redirect
 from forms import RegistrationForm, LoginForm
+from flask_sqlalchemy import SQLAlchemy
+
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'e94f492957e9be802f10ca325ee12cb3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+
+db = SQLAlchemy(app)
+
+from models import *
 
 posts = [
     {
@@ -37,13 +45,20 @@ def about():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        flash(f'Account created for {form.username.data}!', 'Success')
+        flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('home'))
     return render_template("registration.html", title = "Registration Page", form=form)
 
-@app.route('/login')
+@app.route('/login', methods=['POST','GET'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        # Dummy login information - will be corrected when DB is built
+        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+            flash('You are now logged in!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Login Unsuccesful. Please check email and password', 'danger')
     return render_template("login.html", title = "Login Page", form=form)
 
 
