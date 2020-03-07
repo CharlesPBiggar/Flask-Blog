@@ -13,7 +13,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
 db = SQLAlchemy(app)
 
-from models import *
+from models import User, Post
 
 posts = [
     {
