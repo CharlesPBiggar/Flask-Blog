@@ -1,10 +1,10 @@
 from datetime import datetime
-from sqlalchemy import Column, Float, Integer, Text
+from sqlalchemy import Column, Float, Integer, Text, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from app import db
 
 Base = declarative_base()
 
+from app import db
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -26,7 +26,7 @@ class Post(db.Model):
     title = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.Foreign_Key('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}' )"
