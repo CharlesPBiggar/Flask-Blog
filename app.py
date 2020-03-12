@@ -31,16 +31,18 @@ posts = [
 ]
 
 
-#First Route
+#Home Route
 @app.route('/')
 @app.route('/home')
 def home():
     return render_template("home.html", title = "Home Page", posts=posts)
 
+#About Page Route
 @app.route('/about')
 def about():
     return render_template("about.html", title = "About")
 
+#Registration Page Route
 @app.route('/register', methods=['POST','GET'])
 def register():
     form = RegistrationForm()
@@ -49,6 +51,7 @@ def register():
         return redirect(url_for('home'))
     return render_template("registration.html", title = "Registration Page", form=form)
 
+#Login Route
 @app.route('/login', methods=['POST','GET'])
 def login():
     form = LoginForm()
