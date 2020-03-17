@@ -1,10 +1,11 @@
+# Models Page
+
+# Dependencies
 from datetime import datetime
+from flaskblog import db
 from sqlalchemy import Column, Float, Integer, Text, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 
-Base = declarative_base()
-
-from app import db
 
 class User(db.Model):
     __tablename__ = 'user'
