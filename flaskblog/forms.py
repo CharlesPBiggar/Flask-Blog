@@ -8,7 +8,7 @@ class RegistrationForm(FlaskForm):
     username = StringField('Username', 
                             validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email', 
-                            validators=[DataRequired(), Regexp(regex='^[A-Za-z0-9\-\.]+@[A-Za-z\-]+.[a-z]{2,3}$', message='Not a valid Email.')])
+                            validators=[DataRequired(), Regexp(regex=r'^[A-Za-z0-9\-\.]+@[A-Za-z\-]+.[a-z]{2,3}$', message='Not a valid Email.')])
                                                                         # Created Regular Expression to catch entrys that are not emails
     password = PasswordField('Password',
                             validators=[DataRequired(), Length(min=6, max=30)])
