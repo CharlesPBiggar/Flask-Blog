@@ -2,13 +2,18 @@
 
 # Dependencies
 from datetime import datetime
-from flaskblog import db
+from flaskblog import db, login_manager
+from flask_login import UserMixin
 from sqlalchemy import Column, Float, Integer, Text, ForeignKey, String, DATETIME
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
-class User(db.Model):
+
+class User(db.Model, UserMixin):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
     username = Column(String(20), unique=True, nullable=False)
