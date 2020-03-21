@@ -19,5 +19,8 @@ bcrypt = Bcrypt(app)
 
 # log in manager
 login_manager = LoginManager(app)
+#redirect and alert if someone tries to access account page while not logged in
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
 
 from flaskblog import routes
